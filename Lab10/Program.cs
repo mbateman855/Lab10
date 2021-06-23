@@ -9,29 +9,62 @@ namespace Lab10
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter a movie category. (animated, horror, scifi, drama)");
-            InputValidation(Console.ReadLine());
-        }
-        static void CategoryMenu()
-        {
-            string[] categoryMenu = new string[4] { "animated", "horror", "scifi", "drama" };
-
             Console.WriteLine("You can also select 1-4 to choose a category.");
-            Console.WriteLine("1.) animated" + "\n2.) horror" + "\n3.) scifi" + "4.) drama");
+            Console.WriteLine("1.) animated" + "\n2.) horror" + "\n3.) scifi" + "\n4.) drama\n");
+            MenuCheck(Console.ReadLine());
+            //InputValidation(Console.ReadLine());
+        }
 
-            string input = Console.ReadLine();
+        static void MenuCheck(string input)
+        {
             if (int.TryParse(input, out int validInput) == true)
             {
-                
+                CategoryMenu(validInput);
             }
-            else if
+            else
             {
-
+                InputValidation(input);
             }
+        }
+        static void CategoryMenu(int input)
+        {
+            //string[] categoryMenu = new string[4] { "animated", "horror", "scifi", "drama" };
 
-            foreach (var option in categoryMenu)
+            //Console.WriteLine("You can also select 1-4 to choose a category.");
+            //Console.WriteLine("1.) animated" + "\n2.) horror" + "\n3.) scifi" + "4.) drama");
+
+            //string input = Console.ReadLine();
+            //if (int.TryParse(input, out int validInput) == true)
+            //{
+
+            //}
+            //int input = int.Parse(input);
+
+            if (input == 1)
             {
-                if (input == )
+                MovieList("animated");
             }
+            else if (input == 2)
+            {
+                MovieList("horror");
+            }
+            else if (input == 3)
+            {
+                MovieList("scifi");
+            }
+            else if (input == 4)
+            {
+                MovieList("drama");
+            }
+            else
+            {
+                return;
+            }
+
+            //foreach (var option in categoryMenu)
+            //{
+            //    if (input == )
+            //}
         }
         static void InputValidation(string inputCheck)
         {
@@ -75,6 +108,7 @@ namespace Lab10
             {
                 Console.WriteLine("Please indicate Y or N.");
                 Repeater();
+                return;
             }
             string repeat = repeatCheck.ToLower();
 
@@ -83,7 +117,9 @@ namespace Lab10
             if (repeat == "y")
             {
                 Console.WriteLine("Please enter a movie category. (animated, horror, scifi, drama)");
-                InputValidation(Console.ReadLine());
+                Console.WriteLine("You can also select 1-4 to choose a category.");
+                Console.WriteLine("1.) animated" + "\n2.) horror" + "\n3.) scifi" + "\n4.) drama\n");
+                MenuCheck(Console.ReadLine());
             }
             else if(repeat == "n")
             {
