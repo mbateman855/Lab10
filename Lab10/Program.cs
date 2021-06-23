@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Lab10
@@ -12,7 +13,6 @@ namespace Lab10
             Console.WriteLine("You can also select 1-4 to choose a category.");
             Console.WriteLine("1.) animated" + "\n2.) horror" + "\n3.) scifi" + "\n4.) drama\n");
             MenuCheck(Console.ReadLine());
-            //InputValidation(Console.ReadLine());
         }
 
         static void MenuCheck(string input)
@@ -26,20 +26,9 @@ namespace Lab10
                 InputValidation(input);
             }
         }
+
         static void CategoryMenu(int input)
-        {
-            //string[] categoryMenu = new string[4] { "animated", "horror", "scifi", "drama" };
-
-            //Console.WriteLine("You can also select 1-4 to choose a category.");
-            //Console.WriteLine("1.) animated" + "\n2.) horror" + "\n3.) scifi" + "4.) drama");
-
-            //string input = Console.ReadLine();
-            //if (int.TryParse(input, out int validInput) == true)
-            //{
-
-            //}
-            //int input = int.Parse(input);
-
+        {           
             if (input == 1)
             {
                 MovieList("animated");
@@ -61,22 +50,18 @@ namespace Lab10
                 return;
             }
 
-            //foreach (var option in categoryMenu)
-            //{
-            //    if (input == )
-            //}
         }
+
         static void InputValidation(string inputCheck)
         {
             if (inputCheck == null)
             {
                 Console.WriteLine("Not a valid category, please select animated, horror, scifi, or drama.");
-                InputValidation(Console.ReadLine());
+                MenuCheck(Console.ReadLine());
             }
 
             string input = inputCheck.ToLower();
-            Regex blankCheck = new Regex(@"\s+");
-            
+            Regex blankCheck = new Regex(@"\s+");            
 
             if (blankCheck.IsMatch(input) == false && input != string.Empty)
             {
@@ -97,12 +82,11 @@ namespace Lab10
                 InputValidation(Console.ReadLine());
             }
         }
+
         static void Repeater()
         {
             Console.WriteLine("Would you like to continue? Y/N");
             string repeatCheck = Console.ReadLine();
-
-            //Console.WriteLine("this is reapeatcheck " + repeatCheck);
 
             if (repeatCheck == null)
             {
@@ -111,8 +95,6 @@ namespace Lab10
                 return;
             }
             string repeat = repeatCheck.ToLower();
-
-            //Console.WriteLine("this is repeat " + repeat);
 
             if (repeat == "y")
             {
@@ -132,6 +114,7 @@ namespace Lab10
                 Repeater();
             }
         }
+
         static void MovieList(string inputCategory)
         {
             List<Movie> movies = new List<Movie>();
@@ -158,7 +141,7 @@ namespace Lab10
             movies.Add(movie9);
             movies.Add(movie10);
 
-            foreach (var movie in movies)
+            foreach(var movie in movies)
             {
                 if (movie.Category == inputCategory)
                 {
@@ -167,6 +150,23 @@ namespace Lab10
             }
 
             Repeater();
+
+            //Below, trying to figure out how to sort a list by a property...
+
+            //List<Movie> sortedMovies = new List<Movie>();
+
+            //foreach (var movie in movies)
+            //{
+            //    if (movie.Category == inputCategory)
+            //    {
+            //        sortedMovies.Add(movie);
+            //    }
+            //}
+            //sortedMovies.Sort((s1, s2) => s1.CompareTo(s2));
+            //foreach (var movie in sortedMovies)
+            //{
+            //    Console.WriteLine(movie.Title);
+            //}
         }
     }
 }
